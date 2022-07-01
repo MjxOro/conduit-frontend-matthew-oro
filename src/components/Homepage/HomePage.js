@@ -1,9 +1,13 @@
 import Banner from './Banner'
+import Topics from './Topics'
 
 
 function HomePage(){
   return(
-    <Banner/>
+    <>
+      <Banner/>
+      <Topics/>
+    </>
   )
 }
 export default HomePage;
