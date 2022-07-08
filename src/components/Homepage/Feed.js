@@ -11,13 +11,13 @@ function Topics() {
             </li>
           </ul>
         </div>
-        <div className="md:ml-6">
-          <input
-            type="text"
-            placeholder="Popular Tags"
-            className="bg-tag-color border border-main-grey text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2  dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          />
-        </div>
+        <ul className="md:ml-6 text-grey-900">
+          <li
+            className="bg-tag-color border border-main-grey text-sm rounded-md block w-full p-2"
+          >
+            <a href="#">Popular Tags</a>
+          </li>
+        </ul>
       </nav>
 
     </article>
