@@ -20,7 +20,6 @@ function Topics() {
         </div>
       </nav>
 
-      <p>No articles here yet</p>
     </article>
   );
 }
