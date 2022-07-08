@@ -1,12 +1,12 @@
 import Banner from './Banner'
-import Topics from './Topics'
+import Feed from './Feed'
 
 
 function HomePage(){
   return(
     <div>
       <Banner/>
-      <Topics/>
+      <Feed/>
     </div>
   )
 }
