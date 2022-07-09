@@ -1,4 +1,5 @@
 import PopularTags from "./PopularTags";
+import Article from "./Article";
 
 function Topics() {
   return (
@@ -17,6 +18,7 @@ function Topics() {
           </li>
         </ul>
       </nav>
+      <Article/>
 
     </article>
   );

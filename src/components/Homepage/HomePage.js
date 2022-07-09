@@ -1,6 +1,5 @@
 import Banner from './Banner'
 import Feed from './Feed'
-import Article from './Article'
 
 
 function HomePage(){
@@ -8,7 +7,6 @@ function HomePage(){
     <div>
       <Banner/>
       <Feed/>
-      <Article/>
     </div>
   )
 }
