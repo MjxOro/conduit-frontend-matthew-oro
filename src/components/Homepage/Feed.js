@@ -3,7 +3,7 @@ import Article from "./Article";
 
 function Topics() {
   return (
-    <article className="py-4 px-[25%]">
+    <div className="py-4 px-[25%]">
       <nav className="flex flex-col-reverse md:flex-row md:items-center md:justify-center ">
         <div className="mb-4 border-b border-main-green dark:border-main-grey flex-grow">
           <ul className="flex flex-wrap -mb-px text-sm font-medium text-center">
@@ -20,7 +20,7 @@ function Topics() {
       </nav>
       <Article/>
 
-    </article>
+    </div>
   );
 }
 export default Topics;
