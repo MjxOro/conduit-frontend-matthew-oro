@@ -1,7 +1,7 @@
 import PopularTags from "./PopularTags";
 import Article from "./Article";
 
-function Topics() {
+function Feed() {
   return (
     <div className="py-4 px-[25%]">
       <nav className="flex flex-col-reverse md:flex-row md:items-center md:justify-center ">
@@ -20,4 +20,4 @@ function Topics() {
     </div>
   );
 }
-export default Topics;
+export default Feed;
