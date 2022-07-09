@@ -1,4 +1,5 @@
-import Feed from "./Feed"
+import Feed from "./Feed";
+
 function Banner() {
   return (
     <div>
@@ -6,7 +7,7 @@ function Banner() {
         <h1 className="text-5xl m-2">conduit</h1>
         <p className="m-2">A place to share your knowledge.</p>
       </section>
-      <Feed/>
+      <Feed />
     </div>
   );
 }
