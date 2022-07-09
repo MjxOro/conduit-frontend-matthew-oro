@@ -1,6 +1,6 @@
 function Article() {
   return (
-    <article className="px-[25%]">
+    <article>
       <p>No articles here yet</p>
     </article>
   );
