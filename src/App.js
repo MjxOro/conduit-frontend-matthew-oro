@@ -3,7 +3,7 @@ import HomePage from './components/Homepage/HomePage';
 import SignUpPage from "./components/SignUpPage/SignUpPage";
 
 function App() {
-  return <SignUpPage />;
+  return <HomePage />;
 }
 
 export default App;
