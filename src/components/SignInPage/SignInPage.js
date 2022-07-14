@@ -1,17 +1,17 @@
 import Greeting from "../Greeting";
-import Form from "./Form";
 import Header from "../Header";
+import AuthenticationForm from "../AuthenticationForm";
 
-function SignUpPage(){
+function SignInPage(){
   return (
     <div>
       <Header />
       <div className="flex flex-col justify-center items-center">
-        <Greeting title={"Sign In"} link={"Need an account?"} />
-        <Form />
+        <Greeting title={"Sign In"} linkMessage={"Need an account?"} link={"#"} />
+        <AuthenticationForm placeholders={["Email","Password"]} buttonMessage={"Sign in"} />
       </div>
     </div>
   )
 }
-export default SignUpPage;
+export default SignInPage;
 
