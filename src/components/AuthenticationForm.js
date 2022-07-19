@@ -1,18 +1,12 @@
 import InputBox from "./InputBox";
 import GreenButton from "./GreenButton";
 
-function AuthenticationForm({placeholders,buttonMessage}){
+function AuthenticationForm({ placeholders, name, buttonMessage, submitCallbackFn, }){
   return(
-    <form className="w-[30%] flex flex-col justify-center items-center my-4" >
-      {placeholders.map(handleMap)}
+    <form onSubmit={submitCallbackFn} className="w-[30%] flex flex-col justify-center items-center my-4" >
+      {placeholders.map((placeholder) => <InputBox placeholder={placeholder} name={name} />)}
       <GreenButton message={buttonMessage} />
     </form>
-  )
-}
-
-function handleMap(placeholder){
-  return(
-    <InputBox placeholder={placeholder} />
   )
 }
 
