@@ -42,6 +42,8 @@ function handleSubmitSignUp(event){
   signup.name.forEach((inputName) => {
     const input = event.target[inputName];
     userData[inputName] = input.value;
+
+    input.value = "";
   })
   sessionStorage.setItem("user", userData);
 
