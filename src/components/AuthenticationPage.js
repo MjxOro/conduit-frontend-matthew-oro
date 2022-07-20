@@ -45,7 +45,7 @@ function handleSubmitSignUp(event){
 
     input.value = "";
   })
-  sessionStorage.setItem("user", userData);
+  sessionStorage.setItem("user", JSON.stringify(userData));
 
 }
 export default AuthenticationPage;
