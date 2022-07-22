@@ -6,21 +6,16 @@ const signup = {
   title: "Sign Up",
   linkMessage: "Have an account?",
   link: "#",
-  placeholders: ["Username", "Email", "Password"],
-  name: ["username","email","password"],
-  inputType: ["text", "text", "password"],
+  inputBox: [{placeholder: "Username", name: "username", type: "text"}, {placeholder: "Email", name: "email", type: "email"}, {placeholder: "Password", name: "password", type: "password"}],
   buttonMessage: "Submit"
 }
 const signin = {
   title: "Sign In",
   linkMessage: "Need an account?",
   link: "#",
-  placeholders: ["Email", "Password"],
-  name: ["email","password"],
-  inputType: ["text", "text"],
+  inputBox: [{placeholder: "Email", name: "email", type: "email"}, {placeholder: "Password", name: "password", type: "password"}],
   buttonMessage: "Sign in"
 }
-const userData = {}
 
 function AuthenticationPage({isSignin}){
   return (
@@ -30,12 +25,12 @@ function AuthenticationPage({isSignin}){
           isSignin ?
           <div className="flex flex-col justify-center items-center">
             <Greeting title={ signin.title } linkMessage={ signin.linkMessage } link={ signin.link } />
-            <AuthenticationForm submitCallbackFn={ handleSubmitSignIn } inputType={ signin.inputType }  placeholders={ signin.placeholders } name={ signin.name } buttonMessage={ signin.buttonMessage } />
+            <AuthenticationForm submitCallbackFn={ handleSubmitSignIn } inputBox={ signin.inputBox } buttonMessage={ signin.buttonMessage } />
           </div>
           :
           <div className="flex flex-col justify-center items-center">
             <Greeting title={ signup.title } linkMessage={ signup.linkMessage } link={ signup.link } />
-            <AuthenticationForm submitCallbackFn={ handleSubmitSignUp } inputType={ signup.inputType }  placeholders={ signup.placeholders } name={ signup.name } buttonMessage={ signup.buttonMessage } />
+            <AuthenticationForm submitCallbackFn={ handleSubmitSignUp } inputBox={ signup.inputBox } buttonMessage={ signup.buttonMessage } />
           </div>
         }
     </div>

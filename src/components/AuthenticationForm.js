@@ -1,10 +1,10 @@
 import InputBox from "./InputBox";
 import SubmitButton from "./SubmitButton";
 
-function AuthenticationForm({ placeholders, name, inputType, buttonMessage, submitCallbackFn }){
+function AuthenticationForm({ inputBox, buttonMessage, submitCallbackFn }){
   return(
     <form onSubmit={submitCallbackFn} className="w-[30%] flex flex-col justify-center items-center my-4" >
-      {placeholders.map((placeholder, i) => <InputBox key={i} type={inputType[i]} placeholder={placeholder} name={name[i]} />)}
+      {inputBox.map((input, i) => <InputBox key={i}  placeholder={input.placeholder} name={input.name} type={input.type}/>)}
       <SubmitButton message={buttonMessage} />
     </form>
   )
