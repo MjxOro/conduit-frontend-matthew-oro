@@ -26,10 +26,18 @@ function AuthenticationPage({isSignin}){
   return (
     <div>
       <Header />
-      <div className="flex flex-col justify-center items-center">
-        <Greeting title={ isSignin ? signin.title : signup.title } linkMessage={ isSignin ? signin.linkMessage : signup.linkMessage } link={ isSignin ? signin.link : signup.link } />
-        <AuthenticationForm submitCallbackFn={ isSignin ? handleSubmitSignIn : handleSubmitSignUp } inputType={isSignin ? signin.inputType : signup.inputType }  placeholders={ isSignin ? signin.placeholders : signup.placeholders } name={ isSignin ? signin.name : signup.name } buttonMessage={ isSignin ? signin.buttonMessage : signup.buttonMessage } />
-      </div>
+        {
+          isSignin ?
+          <div className="flex flex-col justify-center items-center">
+            <Greeting title={ signin.title } linkMessage={ signin.linkMessage } link={ signin.link } />
+            <AuthenticationForm submitCallbackFn={ handleSubmitSignIn } inputType={ signin.inputType }  placeholders={ signin.placeholders } name={ signin.name } buttonMessage={ signin.buttonMessage } />
+          </div>
+          :
+          <div className="flex flex-col justify-center items-center">
+            <Greeting title={ signup.title } linkMessage={ signup.linkMessage } link={ signup.link } />
+            <AuthenticationForm submitCallbackFn={ handleSubmitSignUp } inputType={ signup.inputType }  placeholders={ signup.placeholders } name={ signup.name } buttonMessage={ signup.buttonMessage } />
+          </div>
+        }
     </div>
   )
 }
