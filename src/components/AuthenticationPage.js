@@ -1,6 +1,7 @@
 import Greeting from "./Greeting";
 import Header from "./Header";
 import AuthenticationForm from "./AuthenticationForm";
+import axios from 'axios';
 
 const signup = {
   title: "Sign Up",
@@ -41,21 +42,38 @@ function handleSubmitSignIn(){
 }
 
 async function handleSubmitSignUp(event){
-  event.preventDefault();
-  const input = event.target;
+  try{
+    event.preventDefault();
+    const input = event.target;
 
-  const jwt = `await POST('/api/users', {
-    'user': {
-      'username': ${input['username'].value},
-      'email': ${input['email'].value},
-      'password': ${input['password'].value}
+    const jwt = await axios({
+      method: 'post',
+      url: "https://launchup-prisma.herokuapp.com/api/users",
+      data: {
+        "user":{
+          "username": input['username'].value,
+          "email": input['email'].value,
+          "password": input['password'].value,
+        }
+      }
+    })
+
+    sessionStorage.setItem("token", jwt.token);
+
+    input['username'].value = "";
+    input['email'].value = "";
+    input['password'].value = "";
+
+  } catch(e){
+    if(e.response.status == 422 ){
+      throw new Error({
+        "errors":{
+          "body": [
+            "can't be empty"
+          ]
+        }
+      })
     }
-  })`;
-
-  sessionStorage.setItem("token", jwt);
-
-  input['username'].value = "";
-  input['email'].value = "";
-  input['password'].value = "";
+  }
 }
 export default AuthenticationPage;
