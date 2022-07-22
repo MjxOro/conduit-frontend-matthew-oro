@@ -67,9 +67,9 @@ async function handleSubmitSignUp(event) {
     event.preventDefault();
     const input = event.target;
 
-    const jwt = await axios({
+    const { data } = await axios({
       method: "post",
-      url: "https://launchup-prisma.herokuapp.com/api/users",
+      url: `${process.env.REACT_APP_API_URL}/api/users`,
       data: {
         user: {
           username: input["username"].value,
@@ -79,7 +79,7 @@ async function handleSubmitSignUp(event) {
       },
     });
 
-    sessionStorage.setItem("token", jwt.token);
+    sessionStorage.setItem("token", data.user.token);
 
     input["username"].value = "";
     input["email"].value = "";
