@@ -1,5 +1,5 @@
 
-function InputBox({placeholder, name, type}){
+function InputBox({placeholder = "", name = null, type = "text"}){
   return(
       <input type={type} name={name} placeholder={placeholder}  className="bg-white border border-gray-300 text-grey-900 text-sm placeholder:text-placeholder-grey rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-5 mb-4 "/>
   )
