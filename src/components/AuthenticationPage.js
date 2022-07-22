@@ -45,15 +45,22 @@ function AuthenticationPage({isSignin}){
 function handleSubmitSignIn(){
 }
 
-function handleSubmitSignUp(event){
+async function handleSubmitSignUp(event){
   event.preventDefault();
-  signup.name.forEach((inputName) => {
-    const input = event.target[inputName];
-    userData[inputName] = input.value;
+  const input = event.target;
 
-    input.value = "";
-  })
-  sessionStorage.setItem("user", JSON.stringify(userData));
+  const jwt = `await POST('/api/users', {
+    'user': {
+      'username': ${input['username'].value},
+      'email': ${input['email'].value},
+      'password': ${input['password'].value}
+    }
+  })`;
 
+  sessionStorage.setItem("token", jwt);
+
+  input['username'].value = "";
+  input['email'].value = "";
+  input['password'].value = "";
 }
 export default AuthenticationPage;
