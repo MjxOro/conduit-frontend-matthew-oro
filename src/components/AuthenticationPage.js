@@ -60,7 +60,42 @@ function AuthenticationPage({ isSignin }) {
   );
 }
 
-function handleSubmitSignIn() {}
+async function handleSubmitSignIn(event) {
+  try{
+    event.preventDefault();
+
+    const input = event.target;
+
+    const jwt = sessionStorage.getItem("token");
+    
+    const { data } = await axios({
+      method: 'post',
+      url: `${process.env.REACT_APP_API_URL}/api/users/login`,
+      headers: { Authorization:`Bearer ${jwt}`},
+      data: {
+        "user": {
+          "email": input["email"].value,
+          "password": input["password"].value
+        }
+      }
+    })
+
+    sessionStorage.setItem("token", data.user.token)
+
+
+    input["email"].value = "";
+    input["password"].value = "";
+
+  } catch(e){
+    if (e.response.status == 422) {
+      throw new Error({
+        errors: {
+          body: ["can't be empty"],
+        },
+      });
+    }
+  }
+}
 
 async function handleSubmitSignUp(event) {
   try {
