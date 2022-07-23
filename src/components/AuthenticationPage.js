@@ -61,32 +61,30 @@ function AuthenticationPage({ isSignin }) {
 }
 
 async function handleSubmitSignIn(event) {
-  try{
+  try {
     event.preventDefault();
 
     const input = event.target;
 
     const jwt = sessionStorage.getItem("token");
-    
+
     const { data } = await axios({
-      method: 'post',
+      method: "post",
       url: `${process.env.REACT_APP_API_URL}/api/users/login`,
-      headers: { Authorization:`Bearer ${jwt}`},
+      headers: { Authorization: `Bearer ${jwt}` },
       data: {
-        "user": {
-          "email": input["email"].value,
-          "password": input["password"].value
-        }
-      }
-    })
+        user: {
+          email: input["email"].value,
+          password: input["password"].value,
+        },
+      },
+    });
 
-    sessionStorage.setItem("token", data.user.token)
-
+    sessionStorage.setItem("token", data.user.token);
 
     input["email"].value = "";
     input["password"].value = "";
-
-  } catch(e){
+  } catch (e) {
     if (e.response.status == 422) {
       throw new Error({
         errors: {
