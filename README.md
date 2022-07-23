@@ -34,6 +34,10 @@ Format: `<type>(<scope>): <subject>`
 
 `<scope>` is optional
 
+## Environment Variables
+
+This project uses environment variables. Refer to `.env.sample` file to fill in the environment variables to corresponding values.
+
 ### Example
 
 ```
