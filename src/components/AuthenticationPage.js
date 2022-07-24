@@ -66,12 +66,9 @@ async function handleSubmitSignIn(event) {
 
     const input = event.target;
 
-    const jwt = sessionStorage.getItem("token");
-
     const { data } = await axios({
       method: "post",
       url: `${process.env.REACT_APP_API_URL}/api/users/login`,
-      headers: { Authorization: `Bearer ${jwt}` },
       data: {
         user: {
           email: input["email"].value,
