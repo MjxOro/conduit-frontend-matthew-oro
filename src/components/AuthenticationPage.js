@@ -2,6 +2,7 @@ import Greeting from "./Greeting";
 import Header from "./Header";
 import AuthenticationForm from "./AuthenticationForm";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const signup = {
   title: "Sign Up",
@@ -26,6 +27,9 @@ const signin = {
 };
 
 function AuthenticationPage({ isSignin }) {
+
+  let navigate = useNavigate();
+
   return (
     <div>
       <Header />
@@ -37,7 +41,9 @@ function AuthenticationPage({ isSignin }) {
             link={signin.link}
           />
           <AuthenticationForm
-            submitCallbackFn={handleSubmitSignIn}
+            submitCallbackFn={async (event) =>{
+              await handleSubmitSignIn(event,navigate);
+            }}
             inputBox={signin.inputBox}
             buttonMessage={signin.buttonMessage}
           />
@@ -50,7 +56,9 @@ function AuthenticationPage({ isSignin }) {
             link={signup.link}
           />
           <AuthenticationForm
-            submitCallbackFn={handleSubmitSignUp}
+            submitCallbackFn={async (event) =>{
+              await handleSubmitSignUp(event,navigate);
+            }}
             inputBox={signup.inputBox}
             buttonMessage={signup.buttonMessage}
           />
@@ -60,7 +68,7 @@ function AuthenticationPage({ isSignin }) {
   );
 }
 
-async function handleSubmitSignIn(event) {
+async function handleSubmitSignIn(event,navigate) {
   try {
     event.preventDefault();
 
@@ -81,6 +89,9 @@ async function handleSubmitSignIn(event) {
 
     input["email"].value = "";
     input["password"].value = "";
+
+    navigate("/")
+
   } catch (e) {
     if (e.response.status == 422) {
       throw new Error({
@@ -92,7 +103,7 @@ async function handleSubmitSignIn(event) {
   }
 }
 
-async function handleSubmitSignUp(event) {
+async function handleSubmitSignUp(event,navigate) {
   try {
     event.preventDefault();
     const input = event.target;
@@ -114,6 +125,9 @@ async function handleSubmitSignUp(event) {
     input["username"].value = "";
     input["email"].value = "";
     input["password"].value = "";
+
+    navigate("/")
+
   } catch (e) {
     if (e.response.status == 422) {
       throw new Error({
