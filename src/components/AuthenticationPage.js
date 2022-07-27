@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 const signup = {
   title: "Sign Up",
   linkMessage: "Have an account?",
-  link: "#",
+  link: "/signin",
   inputBox: [
     { placeholder: "Username", name: "username", type: "text" },
     { placeholder: "Email", name: "email", type: "email" },
@@ -18,7 +18,7 @@ const signup = {
 const signin = {
   title: "Sign In",
   linkMessage: "Need an account?",
-  link: "#",
+  link: "/signup",
   inputBox: [
     { placeholder: "Email", name: "email", type: "email" },
     { placeholder: "Password", name: "password", type: "password" },
