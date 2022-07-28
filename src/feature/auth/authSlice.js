@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
@@ -7,7 +7,7 @@ const initialState = {
   isLoading: true,
 };
 
-export const getAuthUser = createAsyncThunk('auth/getAuthUser', async () => {
+export const getAuthUser = createAsyncThunk('auth/getAuthUser', async ({rejectWithValue}) => {
   try{
     const jwt = sessionStorage.getItem("token")
     const response = await axios({
@@ -18,6 +18,10 @@ export const getAuthUser = createAsyncThunk('auth/getAuthUser', async () => {
     return response.data;
   } catch(e){
     console.log(e)
+    if(e.response.status === 401){
+      rejectWithValue("invalid JWT token")
+      throw new Error("invalid JWT token")
+    }
   }
 })
 
@@ -32,9 +36,13 @@ const authSlice = createSlice({
       console.log(action);
       state.isLoading = false;
       state.user = action.payload.user;
+      state.isAuth = true;
     }, 
     [getAuthUser.rejected]: (state) => {
       state.isLoading = false;
+      state.user = {}
+      state.isAuth = false
+      sessionStorage.removeItem("token")
     }
   }
 });
