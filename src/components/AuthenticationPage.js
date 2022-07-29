@@ -1,8 +1,8 @@
 import Greeting from "./Greeting";
-import Header from "./Header";
+import Header from "./Header/Header";
 import AuthenticationForm from "./AuthenticationForm";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const signup = {
   title: "Sign Up",
@@ -41,8 +41,8 @@ function AuthenticationPage({ isSignin }) {
             link={signin.link}
           />
           <AuthenticationForm
-            submitCallbackFn={async (event) =>{
-              await handleSubmitSignIn(event,navigate);
+            submitCallbackFn={async (event) => {
+              await handleSubmitSignIn(event, navigate);
             }}
             inputBox={signin.inputBox}
             buttonMessage={signin.buttonMessage}
@@ -56,8 +56,8 @@ function AuthenticationPage({ isSignin }) {
             link={signup.link}
           />
           <AuthenticationForm
-            submitCallbackFn={async (event) =>{
-              await handleSubmitSignUp(event,navigate);
+            submitCallbackFn={async (event) => {
+              await handleSubmitSignUp(event, navigate);
             }}
             inputBox={signup.inputBox}
             buttonMessage={signup.buttonMessage}
@@ -68,7 +68,7 @@ function AuthenticationPage({ isSignin }) {
   );
 }
 
-async function handleSubmitSignIn(event,navigate) {
+async function handleSubmitSignIn(event, navigate) {
   try {
     event.preventDefault();
 
@@ -103,7 +103,7 @@ async function handleSubmitSignIn(event,navigate) {
   }
 }
 
-async function handleSubmitSignUp(event,navigate) {
+async function handleSubmitSignUp(event, navigate) {
   try {
     event.preventDefault();
     const input = event.target;

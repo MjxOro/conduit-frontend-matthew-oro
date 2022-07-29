@@ -1,7 +1,7 @@
 import Banner from "./Banner";
 import Feed from "./Feed";
 import PopularTags from "./PopularTags";
-import Header from "../Header";
+import Header from "../Header/Header";
 import { useEffect } from "react";
 import { getAuthUser } from '../../feature/auth/authSlice';
 import { useDispatch, useSelector } from "react-redux";
@@ -10,11 +10,10 @@ function HomePage() {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
   useEffect(() => {
-    if(sessionStorage.getItem("token") && !user){
-      console.log("test")
+    if (sessionStorage.getItem("token") && !user) {
       dispatch(getAuthUser());
     }
-  },[])
+  }, [])
   return (
     <div>
       <Header />
