@@ -33,7 +33,6 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [getAuthUser.fulfilled]: (state, action) =>{
-      console.log(action.payload.user);
       state.isLoading = false;
       state.user = action.payload.user;
       state.isAuth = true;
