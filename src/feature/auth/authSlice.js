@@ -28,6 +28,11 @@ export const getAuthUser = createAsyncThunk('auth/getAuthUser', async (thunkAPI)
 const authSlice = createSlice({
   name: "auth",
   initialState,
+  reducers: {
+    resetInitial: (state) =>{
+      state.user = null;
+    }
+  },
   extraReducers:{
     [getAuthUser.pending]: (state) => {
       state.isLoading = true;
@@ -46,4 +51,5 @@ const authSlice = createSlice({
   }
 });
 
+export const {resetInitial} = authSlice.actions;
 export default authSlice.reducer;
