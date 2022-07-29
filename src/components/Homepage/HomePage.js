@@ -1,7 +1,7 @@
 import Banner from "./Banner";
 import Feed from "./Feed";
 import PopularTags from "./PopularTags";
-import Header from "../Header";
+import Header from "../Header/Header";
 
 function HomePage() {
   return (
