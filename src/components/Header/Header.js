@@ -16,8 +16,8 @@ function Header() {
             <Link to="/" className="text-sm hover:text-grey-link-hover ml-4">
               Home
             </Link>
-            <IconText iconComponent={<FiEdit />} text="New Post" />
-            <IconText iconComponent={<RiSettings5Fill /> text="Settings"} />
+            <IconText iconComponent={<FiEdit />} text="New Post" link="/" />
+            <IconText iconComponent={<RiSettings5Fill />} text="Settings" link="/" />
             <Link to="/" className="text-sm hover:text-grey-link-hover ml-4 flex items-center">
               <img src={`${user.image}`} className="w-8 h-8 rounded-full" alt="Rounded Avatar" />
               <p className="ml-2">{user.username}</p>
