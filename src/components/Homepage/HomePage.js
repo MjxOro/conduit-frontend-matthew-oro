@@ -4,12 +4,14 @@ import PopularTags from "./PopularTags";
 import Header from "../Header";
 import { useEffect } from "react";
 import { getAuthUser } from '../../feature/auth/authSlice';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function HomePage() {
   const dispatch = useDispatch();
+  const { user } = useSelector(state => state.auth);
   useEffect(() => {
-    if(sessionStorage.getItem("token")){
+    if(sessionStorage.getItem("token") && !user){
+      console.log("test")
       dispatch(getAuthUser());
     }
   },[])
