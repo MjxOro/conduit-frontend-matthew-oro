@@ -4,7 +4,7 @@ import TextArea from "./TextArea";
 import SubmitButton from "./SubmitButton";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { resetInitial } from "../feature/auth/authSlice";
+import { resetInitial, getAuthUser } from "../feature/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
 function SettingsPage() {
@@ -37,6 +37,7 @@ function SettingsPage() {
         input[i].value = "";
       }
 
+      dispatch(getAuthUser());
       navigate("/");
 
     }catch(e){
@@ -72,7 +73,7 @@ function SettingsPage() {
           onSubmit={handleSubmit}
         >
           <h1 className="text-5xl my-4">Your Settings</h1>
-          <InputBox placeholder="URL of profile picture" name="picture" />
+          <InputBox placeholder="URL of profile picture" name="image" />
           <InputBox placeholder="New Username" name="username" />
           <TextArea placeholder="Short bio about you" name="bio" rows="4" />
           <InputBox placeholder="New Email" name="email" />
