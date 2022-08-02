@@ -5,6 +5,7 @@ import AuthenticationPage from "./components/AuthenticationPage"
 import { useEffect } from "react";
 import { getAuthUser, resetInitial } from './feature/auth/authSlice';
 import { useDispatch, useSelector } from "react-redux";
+import SettingsPage from './components/SettingsPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/signup" element={<AuthenticationPage />} />
       <Route path="/signin" element={<AuthenticationPage isSignin />} />
+      <Route path="/settings" element={<SettingsPage />} />
     </Routes>
   );
 }
