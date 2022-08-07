@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { getAuthUser, resetInitial } from './feature/auth/authSlice';
 import { useDispatch, useSelector } from "react-redux";
 import SettingsPage from './components/SettingsPage';
+import NewPostPage from "./components/NewPostPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function App() {
       <Route path="/signup" element={<AuthenticationPage />} />
       <Route path="/signin" element={<AuthenticationPage isSignin />} />
       <Route path="/settings" element={<SettingsPage />} />
+      <Route path="/newpost" element={<NewPostPage />} />
     </Routes>
   );
 }
