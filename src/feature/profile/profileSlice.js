@@ -9,9 +9,11 @@ const initialState = {
 
 export const getProfile = createAsyncThunk('profile/getProfile', async (username) => {
   try{
+    const jwt = sessionStorage.getItem("token");
     const response = await axios({
       method: "get",
       url: `${process.env.REACT_APP_API_URL}/api/profiles/${username}`,
+      headers: { Authorization: `Bearer ${jwt}`}
     })
     return response.data;
   } catch(e){
