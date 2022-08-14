@@ -18,7 +18,7 @@ function Header() {
             </Link>
             <IconText iconComponent={<FiEdit />} text="New Post" link="/newpost" />
             <IconText iconComponent={<RiSettings5Fill />} text="Settings" link="/settings" />
-            <Link to="/" className="text-sm hover:text-grey-link-hover ml-4 flex items-center">
+            <Link to={`/profile/${user.username}`} className="text-sm hover:text-grey-link-hover ml-4 flex items-center">
               <img src={`${user.image}`} className="w-8 h-8 rounded-full" alt="Rounded Avatar" />
               <p className="ml-2">{user.username}</p>
             </Link>

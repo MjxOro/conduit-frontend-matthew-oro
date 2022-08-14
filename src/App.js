@@ -7,6 +7,7 @@ import { getAuthUser, resetInitial } from './feature/auth/authSlice';
 import { useDispatch, useSelector } from "react-redux";
 import SettingsPage from './components/SettingsPage';
 import NewPostPage from "./components/NewPostPage";
+import ProfilePage from "./components/ProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function App() {
       <Route path="/signin" element={<AuthenticationPage isSignin />} />
       <Route path="/settings" element={<SettingsPage />} />
       <Route path="/newpost" element={<NewPostPage />} />
+      <Route path="/profile">
+        <Route path=":userId" element={<ProfilePage />} />
+      </Route>
     </Routes>
   );
 }
