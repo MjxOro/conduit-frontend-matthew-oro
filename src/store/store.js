@@ -6,7 +6,7 @@ import articleReducer from "../feature/article/articleSlice";
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    profile: profileReducer
+    profile: profileReducer,
     articles: articleReducer
   },
 });
