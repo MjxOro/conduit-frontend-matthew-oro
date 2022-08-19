@@ -14,7 +14,7 @@ function Feed() {
       <div className="mb-4 border-b border-main-green dark:border-main-grey flex-grow">
         <ul className="flex flex-wrap -mb-px text-sm font-medium text-center">
           <li className="mr-2">
-            <button className={`inline-block p-4 rounded-t-lg border-b-2 border-main-grey text-main-green hover:text-main-green hover:border-main-green`}>
+            <button className={`inline-block p-4 rounded-t-lg border-b-2 border-main-grey text-grey-link hover:text-main-green hover:border-main-green`}>
               Your Feed
             </button>
             <button className="inline-block p-4 rounded-t-lg border-b-2 border-main-green text-main-green hover:text-main-green hover:border-main-green">
