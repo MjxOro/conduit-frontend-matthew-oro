@@ -25,7 +25,8 @@ function Feed() {
       </div>
       <div>
         {
-          articles && articles?.map((article,index) => <Article key={index} username={article.author.username} image={article.author.image} timeStamp={article.createdAt} likes={0} title={article.title} description={article.description} tags={article.tagList} />)
+          articles ? articles?.map((article,index) => <Article key={index} username={article.author.username} image={article.author.image} timeStamp={article.createdAt} likes={0} title={article.title} description={article.description} tags={article.tagList} />) :
+          <p>No articles here... yet</p>
         }
       </div>
     </div>
