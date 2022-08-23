@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { AiFillHeart } from "react-icons/ai";
-import RemovableTag from "../RemovableTag";
+import TagContainer from "../TagContainer";
 
 function Article({username,image,timeStamp,likes,title,description,tags}) {
   return (
@@ -25,7 +25,7 @@ function Article({username,image,timeStamp,likes,title,description,tags}) {
       </div>
       <div className="flex self-end">
         {
-          tags.map((tag) => <RemovableTag unremovable feed tag={tag} />)
+          tags.map((tag) => <TagContainer unremovable feed tag={tag} />)
 
         }
       </div>
