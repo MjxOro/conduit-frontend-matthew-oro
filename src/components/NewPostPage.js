@@ -3,7 +3,7 @@ import TextArea from "./TextArea";
 import InpuBox from "./InputBox";
 import axios from "axios";
 import { useState } from "react";
-import RemovableTag from "./RemovableTag";
+import TagContainer from "./TagContainer";
 import SubmitButton from "./SubmitButton";
 import { useNavigate } from "react-router-dom";
 
@@ -87,7 +87,7 @@ function NewPostPage() {
         />
         <div className="flex flex-wrap">
           {tagList.map((tag, index) => (
-            <RemovableTag key={index} tag={tag} onClick={handleClick} />
+            <TagContainer key={index} tag={tag} onClick={handleClick} />
           ))}
         </div>
         <SubmitButton
