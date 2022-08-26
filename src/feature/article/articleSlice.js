@@ -23,6 +23,23 @@ export const getFeed = createAsyncThunk("article/getFeed", async (thunkAPI) => {
     }
   }
 });
+export const getTagFilterFeed = createAsyncThunk("article/getTagFilterFeed", async (tag,thunkAPI) => {
+  try {
+    const jwt = sessionStorage.getItem("token");
+    const response = await axios({
+      method: "get",
+      url: `${process.env.REACT_APP_API_URL}/api/articles?tag=${tag}`,
+      headers: { Authorization: `Bearer ${jwt}` },
+    });
+    return response.data;
+  } catch (e) {
+    console.log(e);
+    if (e.response.status === 401) {
+      thunkAPI.rejectWithValue("invalid JWT token");
+      throw new Error("invalid JWT token");
+    }
+  }
+});
 
 const articleSlice = createSlice({
   name: "articles",
@@ -39,8 +56,21 @@ const articleSlice = createSlice({
     [getFeed.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.articles = action.payload.articles;
+      console.log(action.payload.articles)
     },
     [getFeed.rejected]: (state) => {
+      state.isLoading = false;
+      state.articles = null;
+      sessionStorage.removeItem("token");
+    },
+    [getTagFilterFeed.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getTagFilterFeed.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.articles = action.payload.articles;
+    },
+    [getTagFilterFeed.rejected]: (state) => {
       state.isLoading = false;
       state.articles = null;
       sessionStorage.removeItem("token");
