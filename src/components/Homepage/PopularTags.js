@@ -2,14 +2,16 @@ import TagContainer from "../TagContainer";
 import { getTags } from "../../feature/tag/tagSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import {getTagFilterFeed} from "../../feature/article/articleSlice";
+import { getTagFilterFeed, setTabName, setTabChoice } from "../../feature/article/articleSlice";
 
 function PopularTags() {
   let dispatch = useDispatch();
   const { tags } = useSelector((state) => state.tags);
   function handleFilter(event) {
     const tag = event.currentTarget.id;
-    dispatch(getTagFilterFeed(tag))
+    dispatch(setTabName(tag));
+    dispatch(setTabChoice(2));
+    dispatch(getTagFilterFeed(tag));
   }
   useEffect(() => {
     dispatch(getTags());
