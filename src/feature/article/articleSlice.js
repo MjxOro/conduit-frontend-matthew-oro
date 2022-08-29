@@ -3,7 +3,10 @@ import axios from "axios";
 
 const initialState = {
   articles: null,
-  isLoading: true,
+  filteredArticles: null,
+  tabName: null,
+  tabChoice: 1,
+  isLoading: true
 };
 
 export const getFeed = createAsyncThunk("article/getFeed", async (thunkAPI) => {
@@ -47,7 +50,16 @@ const articleSlice = createSlice({
   reducers: {
     resetInitial: (state) => {
       state.articles = null;
+      state.filteredArticles = null;
+      state.tabChoice = 1;
+      state.tabName = null;
     },
+    setTabName: (state,action) => {
+      state.tabName = action.payload;
+    },
+    setTabChoice: (state,action) => {
+      state.tabChoice = action.payload;
+    }
   },
   extraReducers: {
     [getFeed.pending]: (state) => {
@@ -56,7 +68,6 @@ const articleSlice = createSlice({
     [getFeed.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.articles = action.payload.articles;
-      console.log(action.payload.articles)
     },
     [getFeed.rejected]: (state) => {
       state.isLoading = false;
@@ -68,15 +79,15 @@ const articleSlice = createSlice({
     },
     [getTagFilterFeed.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.articles = action.payload.articles;
+      state.filteredArticles = action.payload.articles;
     },
     [getTagFilterFeed.rejected]: (state) => {
       state.isLoading = false;
-      state.articles = null;
+      state.filteredArticles = null;
       sessionStorage.removeItem("token");
     },
   },
 });
 
-export const { resetInitial } = articleSlice.actions;
+export const { resetInitial, setTabName, setTabChoice } = articleSlice.actions;
 export default articleSlice.reducer;
