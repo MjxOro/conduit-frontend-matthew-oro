@@ -20,11 +20,11 @@ function Feed() {
   function handleTabSwitch(choice){
     switch(choice){
       case 0:
-        return articles ? articles.map(handleMap) : "Nothing here yet..."
+        return articles.length > 0 ? articles.map(handleMap) : "Nothing here yet..."
       case 1:
-        return articles ? articles.map(handleMap) : "Nothing here yet..."
+        return articles.length > 0 ? articles.map(handleMap) : "Nothing here yet..."
       case 2:
-        return filteredArticles ? filteredArticles.map(handleMap) : "Nothing here yet..."
+        return filteredArticles.length > 0 ? filteredArticles.map(handleMap) : "Nothing here yet..."
       default:
         return "Nothing here yet"
         

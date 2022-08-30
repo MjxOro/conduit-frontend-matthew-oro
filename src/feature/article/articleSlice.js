@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  articles: null,
-  filteredArticles: null,
+  articles: [],
+  filteredArticles: [],
   tabName: null,
   tabChoice: 1,
   isLoading: true
@@ -49,8 +49,8 @@ const articleSlice = createSlice({
   initialState,
   reducers: {
     resetInitial: (state) => {
-      state.articles = null;
-      state.filteredArticles = null;
+      state.articles = [];
+      state.filteredArticles = [];
       state.tabChoice = 1;
       state.tabName = null;
     },
@@ -71,7 +71,7 @@ const articleSlice = createSlice({
     },
     [getFeed.rejected]: (state) => {
       state.isLoading = false;
-      state.articles = null;
+      state.articles = [];
       sessionStorage.removeItem("token");
     },
     [getTagFilterFeed.pending]: (state) => {
@@ -83,7 +83,7 @@ const articleSlice = createSlice({
     },
     [getTagFilterFeed.rejected]: (state) => {
       state.isLoading = false;
-      state.filteredArticles = null;
+      state.filteredArticles = [];
       sessionStorage.removeItem("token");
     },
   },
