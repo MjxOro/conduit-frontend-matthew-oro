@@ -25,7 +25,7 @@ function Article({username,image,timeStamp,likes,title,description,tags}) {
       </div>
       <div className="flex self-end">
         {
-          tags.map((tag) => <TagContainer unremovable feed tag={tag} />)
+          tags.map((tag,i) => <TagContainer key={i} unremovable feed tag={tag} />)
 
         }
       </div>

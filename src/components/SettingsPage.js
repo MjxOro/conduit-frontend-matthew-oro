@@ -5,6 +5,7 @@ import SubmitButton from "./SubmitButton";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { resetInitial, getAuthUser } from "../feature/auth/authSlice";
+import { resetInitial as resetArticles } from "../feature/article/articleSlice";
 import { useNavigate } from "react-router-dom";
 
 function SettingsPage() {
@@ -62,6 +63,7 @@ function SettingsPage() {
     event.preventDefault();
     sessionStorage.removeItem("token");
     dispatch(resetInitial());
+    dispatch(resetArticles());
     navigate("/");
   }
   return (
