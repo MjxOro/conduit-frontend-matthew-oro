@@ -10,7 +10,9 @@ function Feed() {
   const idleTabStyle = `rounded-t-lg p-4 border-b-2 border-main-grey text-grey-link hover:text-main-green hover:border-main-green`;
   let dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getFeed());
+    if(sessionStorage.getItem("token")){
+      dispatch(getFeed());
+    }
   }, []);
   function handleMap(article,index){
     return(

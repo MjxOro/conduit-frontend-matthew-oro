@@ -14,7 +14,9 @@ function PopularTags() {
     dispatch(getTagFilterFeed(tag));
   }
   useEffect(() => {
-    dispatch(getTags());
+    if(sessionStorage.getItem("token")){
+      dispatch(getTags());
+    }
   }, []);
   return (
     <section className="md:ml-6 text-grey-900 w-[25%] pt-4">
