@@ -1,8 +1,22 @@
 import { Link } from "react-router-dom";
 import { AiFillHeart } from "react-icons/ai";
 import TagContainer from "../TagContainer";
+import { useDispatch } from "react-redux";
+import { setLikePost, setUnlikePost, setTempLike, setTempUnlike } from "../../feature/article/articleSlice";
 
-function Article({username,image,timeStamp,likes,title,description,tags}) {
+function Article({username,image,timeStamp,likes,title,description,tags,slug,isLiked,index}) {
+  let dispatch = useDispatch();
+  function handleLike(){
+    if(isLiked){
+      dispatch(setUnlikePost(slug));
+      dispatch(setTempUnlike(index));
+    }else{
+      dispatch(setLikePost(slug));
+      dispatch(setTempLike(index));
+    }
+  }
+  const unlikedButtonStyle = `flex border justify-center items-center min-w-12 min-h-8 w-12 h-8 border-main-green text-main-green hover:bg-main-green hover:text-white`
+  const likedButtonStyle = `flex border justify-center bg-main-green items-center min-w-12 min-h-8 w-12 h-8 border-main-green text-white hover:bg-white hover:text-main-green`
   return (
     <article className="flex flex-col">
       <div className="flex justify-between items-center">
@@ -13,7 +27,7 @@ function Article({username,image,timeStamp,likes,title,description,tags}) {
             <p className="text-grey-link text-xs">{new Date(timeStamp).toDateString()}</p>
           </div>
         </div>
-        <button className="flex border justify-center items-center min-w-12 min-h-8 w-12 h-8 border-main-green text-main-green hover:bg-main-green hover:text-red-500">
+        <button onClick={handleLike} className={isLiked ? likedButtonStyle : unlikedButtonStyle}>
           <AiFillHeart />
           <p className="text-sm">{likes}</p>
         </button>
