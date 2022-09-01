@@ -43,6 +43,41 @@ export const getTagFilterFeed = createAsyncThunk("article/getTagFilterFeed", asy
     }
   }
 });
+export const setLikePost = createAsyncThunk("article/setLikePost", async (slug, thunkAPI) =>{
+  try{
+    const jwt = sessionStorage.getItem("token");
+    const response = await axios({
+      method: "post",
+      url: `${process.env.REACT_APP_API_URL}/api/articles/${slug}/favorite`,
+      headers: { Authorization: `Bearer ${jwt}`}
+    })
+    return response.data;
+  } catch(e){
+    console.log(e);
+    if (e.response.status === 401) {
+      thunkAPI.rejectWithValue("invalid JWT token");
+      throw new Error("invalid JWT token");
+    }
+  }
+})
+
+export const setUnlikePost = createAsyncThunk("article/setUnlikePost", async (slug, thunkAPI) =>{
+  try{
+    const jwt = sessionStorage.getItem("token");
+    const response = await axios({
+      method: "delete",
+      url: `${process.env.REACT_APP_API_URL}/api/articles/${slug}/favorite`,
+      headers: { Authorization: `Bearer ${jwt}`}
+    })
+    return response.data;
+  } catch(e){
+    console.log(e);
+    if (e.response.status === 401) {
+      thunkAPI.rejectWithValue("invalid JWT token");
+      throw new Error("invalid JWT token");
+    }
+  }
+})
 
 const articleSlice = createSlice({
   name: "articles",
@@ -59,6 +94,15 @@ const articleSlice = createSlice({
     },
     setTabChoice: (state,action) => {
       state.tabChoice = action.payload;
+    },
+    setTempLike: (state, action) => {
+      state.articles[action.payload].favoritesCount += 1;
+      state.articles[action.payload].favorited = true;
+
+    },
+    setTempUnlike: (state, action) =>{
+      state.articles[action.payload].favoritesCount -= 1;
+      state.articles[action.payload].favorited = false;
     }
   },
   extraReducers: {
@@ -86,8 +130,28 @@ const articleSlice = createSlice({
       state.filteredArticles = [];
       sessionStorage.removeItem("token");
     },
+    [setLikePost.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [setLikePost.fulfilled]: (state, _) => {
+      state.isLoading = false;
+    },
+    [setLikePost.rejected]: (state) => {
+      state.isLoading = false;
+      sessionStorage.removeItem("token");
+    },
+    [setUnlikePost.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [setUnlikePost.fulfilled]: (state, _) => {
+      state.isLoading = false;
+    },
+    [setUnlikePost.rejected]: (state) => {
+      state.isLoading = false;
+      sessionStorage.removeItem("token");
+    },
   },
 });
 
-export const { resetInitial, setTabName, setTabChoice } = articleSlice.actions;
+export const { resetInitial, setTabName, setTabChoice, setTempLike, setTempUnlike } = articleSlice.actions;
 export default articleSlice.reducer;
