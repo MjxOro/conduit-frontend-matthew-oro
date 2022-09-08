@@ -16,7 +16,7 @@ function Feed() {
   }, []);
   function handleMap(article,index){
     return(
-      <Article key={index} username={article.author.username} image={article.author.image} timeStamp={article.createdAt} likes={0} title={article.title} description={article.description} tags={article.tagList} />
+      <Article key={article.slug} username={article.author.username} image={article.author.image} timeStamp={article.createdAt} likes={article.favoritesCount} title={article.title} description={article.description} tags={article.tagList} slug={article.slug} isLiked={article.favorited} index={index} />
     )
   }
   function handleTabSwitch(choice){
